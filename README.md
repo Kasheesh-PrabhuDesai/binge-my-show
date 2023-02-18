@@ -1,46 +1,33 @@
-# Getting Started with Create React App
+# IDEA BEHIND THE APP
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The movie database is a public api which can be used to retrieve movies or tv shows. This app deals only with movies. The app consists of three pages
+1) Home page - Displays the various movie categories
+2) Catgory Page -  Displays all the movies which belong to the chosen category
+3) Details Page - Displays the details of a single chosen categorie movie
 
-## Available Scripts
+# FRAMEWORK + LANGUAGE USED
 
-In the project directory, you can run:
+REACT.JS + Typescript
 
-### `yarn start`
+# INTRODUCTION TO THE CODEBASE STRUCTURE
+A very modular folder structure has been used. The structure is as follows
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+1) /src/components - Holds all reusable components which are organised based on the features they provide. For example /src/cards/MovieCards provides a reusable card component which displays all the movies which belong to the chosen movie category.
+2) /src/pages - This folder contains the different pages of this app
+3) /src/hooks - Contains custom hook implementation which in this case is to check when user reaches the page bottom on scrolling which in turn in used in the infinite scrolling
+4) /src/services - Contains all the api backend calls
+5) /src/tests - Holds all the react tests created using jest 
+6) /src/utils - Holds util functions , type definitions, enums etc
+7) /src/secrets -  A folder which holds all user secrets so as to no expose it to the frontend
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
 
-### `yarn test`
+# IMPORTANT DECISIONS TAKEN TO IMPLEMENT THIS APP
+1) A custom hook has been created to check for when user scrolls to the bottom of the page. This is a reusable component and can be used anytime in the future without needing to redefine the code. 
+2) The movie database version 3 is used to fetch the movie categories whereas version 4 is used to fetch movies from selected category because version 4 implements splitting results into pages which is a must for pagination.
+3) Infinite scrolling has been implemented to provide more results on reaching page bottom.
+4) For better user experience a scroll to top button has been added to the end of the selected category movies page.
+5) Since the background and navigation buttons are common for every page, a reusable Layout and Navigation component have been created which reduces code redundancy.
+6) As React context is used, the selected category and selected movie values are stored to the local storage to persist these values on page reload.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+# WEB APP 
+The app has been deployed on vercel and can be tested using this following link https://binge-my-show.vercel.app/
