@@ -1,25 +1,35 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { createContext, useState } from "react";
+import PagesRouter from "./components/PagesRouter";
+import { Genre, Movie, MoviesContextValue } from "./utils";
+
+export const MoviesContext = createContext({} as MoviesContextValue);
 
 function App() {
+  const selectedCategoryFromStorage = JSON.parse(
+    localStorage.getItem("category")
+  );
+  const selectedMovieFromStorage = JSON.parse(localStorage.getItem("movie"));
+  const [movieCategory, setMovieCategory] = useState<Genre[]>([] as Genre[]);
+  const [selectedCategory, setSelectedCategory] = useState<Genre>(
+    selectedCategoryFromStorage ?? ({} as Genre)
+  );
+  const [selectedMovie, setSelectedMovie] = useState<Movie>(
+    selectedMovieFromStorage ?? ({} as Movie)
+  );
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <MoviesContext.Provider
+      value={{
+        movieCategory,
+        setMovieCategory,
+        selectedCategory,
+        setSelectedCategory,
+        selectedMovie,
+        setSelectedMovie,
+      }}
+    >
+      <PagesRouter />
+    </MoviesContext.Provider>
   );
 }
 
