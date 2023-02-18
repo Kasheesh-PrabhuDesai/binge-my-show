@@ -14,9 +14,11 @@ import { Genre } from "../../utils";
 const useStyles = makeStyles(theme =>
   createStyles({
     categoryCard: {
-      width: "20%",
-      height: "300px",
+      width: "25%",
+      minWidth: "20%",
+      height: "200px",
       margin: theme.spacing(5),
+      marginLeft: theme.spacing(10),
       borderRadius: 12,
       boxShadow:
         "rgba(0, 0, 0, 0.1) 0px 19px 38px, rgba(0, 0, 0, 0.1) 0px 15px 12px",
@@ -25,11 +27,18 @@ const useStyles = makeStyles(theme =>
         cursor: "pointer",
         transition: "all .15s linear",
       },
+      [theme.breakpoints.down("sm")]: {
+        margin: theme.spacing(5),
+        width: "30%",
+      },
     },
     categoryText: {
       textAlign: "center",
-      marginTop: "35%",
+      [theme.breakpoints.down("sm")]: {
+        fontSize: "1.2rem",
+      },
       fontSize: "2rem",
+      marginTop: "50px",
     },
   })
 );
@@ -54,7 +63,7 @@ export default function CategoryCard() {
           onClick={() => handleSelectCategory(item)}
         >
           <CardContent>
-            <Typography className={classes.categoryText}>
+            <Typography className={classes.categoryText} gutterBottom noWrap>
               {item.name}
             </Typography>
           </CardContent>

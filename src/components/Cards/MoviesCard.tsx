@@ -7,7 +7,7 @@ import {
   Typography,
   CardHeader,
 } from "@material-ui/core";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { MoviesContext } from "../../App";
 
@@ -16,7 +16,7 @@ const useStyles = makeStyles(theme =>
     categoryCard: {
       width: "35%",
       height: "600px",
-      margin: theme.spacing(10),
+      margin: theme.spacing(5),
       borderRadius: 12,
       boxShadow:
         "rgba(0, 0, 0, 0.1) 0px 19px 38px, rgba(0, 0, 0, 0.1) 0px 15px 12px",

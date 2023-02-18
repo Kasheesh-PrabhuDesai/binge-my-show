@@ -13,10 +13,16 @@ const useStyles = makeStyles(theme =>
     headingText: {
       fontSize: "2.5rem",
       color: "#000",
+      [theme.breakpoints.down("sm")]: {
+        fontSize: "1.5rem",
+      },
     },
     paraText: {
       fontSize: "1.5rem",
       color: "#575454",
+      [theme.breakpoints.down("sm")]: {
+        fontSize: "1rem",
+      },
     },
   })
 );
