@@ -6,6 +6,7 @@ import {
   CardContent,
   Typography,
   CardHeader,
+  Button,
 } from "@material-ui/core";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
@@ -57,36 +58,51 @@ export default function MoviesCard({ movies }) {
           No movies could be found. Try again with a different genre
         </Typography>
       ) : (
-        movies.map(movie => (
-          <Card
-            className={classes.categoryCard}
-            key={movie.id}
-            onClick={() => handleShowMovieDetails(movie)}
-          >
-            <CardHeader
-              title={
-                <Typography noWrap gutterBottom className={classes.moviesText}>
-                  {movie.title}
-                </Typography>
-              }
-              classes={{
-                root: classes.cardHeaderRoot,
-                content: classes.cardHeaderContent,
-              }}
-            />
-            <CardContent>
-              <Grid container>
-                <img
-                  src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                  width={"100%"}
-                  height={450}
-                  alt={movie.title}
-                  style={{ objectFit: "fill" }}
-                />
-              </Grid>
-            </CardContent>
-          </Card>
-        ))
+        <>
+          {movies.map(movie => (
+            <Card
+              className={classes.categoryCard}
+              key={movie.id}
+              onClick={() => handleShowMovieDetails(movie)}
+            >
+              <CardHeader
+                title={
+                  <Typography
+                    noWrap
+                    gutterBottom
+                    className={classes.moviesText}
+                  >
+                    {movie.title}
+                  </Typography>
+                }
+                classes={{
+                  root: classes.cardHeaderRoot,
+                  content: classes.cardHeaderContent,
+                }}
+              />
+              <CardContent>
+                <Grid container>
+                  <img
+                    src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                    width={"100%"}
+                    height={450}
+                    alt={movie.title}
+                    style={{ objectFit: "fill" }}
+                  />
+                </Grid>
+              </CardContent>
+            </Card>
+          ))}
+          <Grid container justifyContent="center">
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            >
+              Go to top
+            </Button>
+          </Grid>
+        </>
       )}
     </Grid>
   );

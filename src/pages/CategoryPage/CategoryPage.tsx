@@ -1,10 +1,4 @@
-import {
-  Grid,
-  makeStyles,
-  createStyles,
-  Typography,
-  Button,
-} from "@material-ui/core";
+import { Grid, makeStyles, createStyles, Typography } from "@material-ui/core";
 import { useContext, useEffect, useState } from "react";
 import { MoviesContext } from "../../App";
 import MoviesCard from "../../components/Cards/MoviesCard";
@@ -61,21 +55,10 @@ export default function CategoryPage() {
 
   return (
     <Layout page={Pages.CATEGORY}>
-      {error ? (
+      {error !== "" ? (
         <Typography variant="h4">{`${error}. Please try again later`}</Typography>
       ) : (
-        <>
-          <MoviesCard movies={movies} />
-          <Grid container justifyContent="center">
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            >
-              Go to top
-            </Button>
-          </Grid>
-        </>
+        <MoviesCard movies={movies} />
       )}
     </Layout>
   );
