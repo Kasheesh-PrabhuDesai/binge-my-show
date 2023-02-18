@@ -61,6 +61,7 @@ export default function CategoryCard() {
           className={classes.categoryCard}
           key={item.id}
           onClick={() => handleSelectCategory(item)}
+          role="category-cards"
         >
           <CardContent>
             <Typography className={classes.categoryText} gutterBottom noWrap>
