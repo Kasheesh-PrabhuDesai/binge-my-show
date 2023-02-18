@@ -39,10 +39,10 @@ export default function CategoryPage() {
     }
     if (selectedCategory.id) {
       fetchMovies();
+      setTimeout(() => {
+        setLoading(false);
+      }, 1200);
     }
-    setTimeout(() => {
-      setLoading(false);
-    }, 1200);
   }, [page, selectedCategory]);
 
   if (loading) {
@@ -53,16 +53,13 @@ export default function CategoryPage() {
     );
   }
 
-  if (error) {
-    return (
-      <Grid container className={classes.container}>
-        <Typography variant="h4">{`${error}. Please try again later`}</Typography>
-      </Grid>
-    );
-  }
   return (
     <Layout page={Pages.CATEGORY}>
-      <MoviesCard movies={movies} />
+      {error ? (
+        <Typography variant="h4">{`${error}. Please try again later`}</Typography>
+      ) : (
+        <MoviesCard movies={movies} />
+      )}
     </Layout>
   );
 }

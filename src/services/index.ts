@@ -12,7 +12,7 @@ export const fetchMoviesGenreList = async () => {
     const response = await fetch(
       `${moviesAPI}/3/genre/movie/list?api_key=${MOVIES_API_KEY}`
     );
-    if (response.status !== 200) throw Error("Internal error ocurred.");
+    if (response.status !== 200) throw Error("Internal Server Error");
     const genreList = await response.json();
     return { genreList: genreList.genres, success: true };
   } catch (err) {
@@ -26,7 +26,8 @@ export const fetchMoviesList = async (genreId: string, page: number) => {
       `${moviesAPI}/4/list/${genreId}?page=${page}&api_key=${MOVIES_API_KEY}`,
       { headers }
     );
-    if (response.status !== 200) throw Error("Internal error ocurred.");
+    if (response.status !== 200)
+      throw Error("Either User has been suspended or List is private");
     const movieList = await response.json();
     return { movieList: movieList.results, success: true };
   } catch (err) {
